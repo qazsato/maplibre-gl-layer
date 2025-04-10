@@ -1,4 +1,4 @@
-.maplibregl-ctrl-layers-dialog {
+.maplibregl-ctrl-layer-dialog {
   position: absolute;
   margin: 0;
   padding: 0;
@@ -7,17 +7,17 @@
   box-shadow: 0 0 0 2px rgba(0, 0, 0, .1);
   border-radius: 5px;
 
-  .maplibregl-ctrl-layers-dialog-content {
+  .maplibregl-ctrl-layer-dialog-content {
     padding: 6px 14px;
     background-color: #fff;
   }
 }
 
-.maplibregl-ctrl-layers-dialog::backdrop {
+.maplibregl-ctrl-layer-dialog::backdrop {
   background: rgba(255, 255, 255, 0.2);
 }
 
-.maplibregl-ctrl-layers-dialog-item {
+.maplibregl-ctrl-layer-dialog-item {
   margin: 6px 0;
 
   label {

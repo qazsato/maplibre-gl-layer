@@ -11,7 +11,7 @@ export class LayerDialog {
     this.options = options
 
     this.dialog = document.createElement('dialog')
-    this.dialog.classList.add('maplibregl-ctrl-layers-dialog')
+    this.dialog.classList.add('maplibregl-ctrl-layer-dialog')
     document.body.appendChild(this.dialog)
 
     this.dialog.addEventListener('click', () => {
@@ -19,7 +19,7 @@ export class LayerDialog {
     })
 
     const content = document.createElement('div')
-    content.classList.add('maplibregl-ctrl-layers-dialog-content')
+    content.classList.add('maplibregl-ctrl-layer-dialog-content')
     content.addEventListener('click', (e) => {
       e.stopPropagation()
     })
@@ -27,7 +27,7 @@ export class LayerDialog {
 
     this.options.layers.forEach((layer) => {
       const div = document.createElement('div')
-      div.classList.add('maplibregl-ctrl-layers-dialog-item')
+      div.classList.add('maplibregl-ctrl-layer-dialog-item')
       // label
       const label = document.createElement('label')
       div.appendChild(label)

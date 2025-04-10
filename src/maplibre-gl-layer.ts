@@ -64,14 +64,13 @@ export class LayerControl implements IControl {
   private getPosition(): ControlPosition | null {
     if (!this.map) return null
     const p = this.map._controlPositions
-    if (p['top-left'].querySelector('.maplibregl-ctrl-layers')) {
+    if (p['top-left'].querySelector('.maplibregl-ctrl-layer')) {
       return 'top-left'
-    } else if (p['top-right'].querySelector('.maplibregl-ctrl-layers')) {
+    } else if (p['top-right'].querySelector('.maplibregl-ctrl-layer')) {
       return 'top-right'
-    }
-    if (p['bottom-left'].querySelector('.maplibregl-ctrl-layers')) {
+    } else if (p['bottom-left'].querySelector('.maplibregl-ctrl-layer')) {
       return 'bottom-left'
-    } else if (p['bottom-right'].querySelector('.maplibregl-ctrl-layers')) {
+    } else if (p['bottom-right'].querySelector('.maplibregl-ctrl-layer')) {
       return 'bottom-right'
     }
     return null
@@ -80,7 +79,7 @@ export class LayerControl implements IControl {
   private createButton() {
     // Button
     const button = document.createElement('button')
-    button.classList.add('maplibregl-ctrl-layers')
+    button.classList.add('maplibregl-ctrl-layer')
     button.setAttribute('title', 'Change map style')
     button.setAttribute('aria-label', 'Change map style')
     // Icon
