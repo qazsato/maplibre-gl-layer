@@ -26,7 +26,7 @@ map.addControl(new LayerControl({
   layers: [
     {
       name: 'STYLE 1',
-      style: YOUR_AWESOME_STYLE // string | 
+      style: YOUR_AWESOME_STYLE
     },
     {
       name: 'STYLE 2',
