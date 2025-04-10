@@ -2,6 +2,8 @@
 
 A layer control for [MapLibre GL JS](https://maplibre.org/maplibre-gl-js/docs/).
 
+![maplibre-gl-layer](./docs/image.png)
+
 ## Installation
 
 ```sh
@@ -14,6 +16,7 @@ npm install maplibre-gl-layer
 import { Map } from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import { LayerControl } from "maplibre-gl-layer";
+import 'maplibre-gl-layer/style.css'
 
 const map = new Map({
   /* YOUR_MAP_OPTIONS */
@@ -22,12 +25,12 @@ const map = new Map({
 map.addControl(new LayerControl({
   layers: [
     {
-      name: 'light',
-      style: 'https://api.protomaps.com/styles/v4/white/ja.json',
+      name: 'STYLE 1',
+      style: YOUR_AWESOME_STYLE // string | 
     },
     {
-      name: 'dark',
-      style: 'https://api.protomaps.com/styles/v4/black/ja.json',
+      name: 'STYLE 2',
+      style: YOUR_AWESOME_STYLE,
     }
   ]
 }))

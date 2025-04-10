@@ -1,7 +1,3 @@
-:root {
-  --header-height: 60px;
-}
-
 html,
 body,
 #app {
@@ -14,18 +10,6 @@ body {
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
 }
 
-header {
-  padding: 0 20px;
-  height: var(--header-height);
-  display: flex;
-  align-items: center;
-
-  h1 {
-    margin: 0;
-    font-size: 20px;
-  }
-}
-
 #map {
-  height: calc(100% - var(--header-height));
+  height: 100%;
 }
