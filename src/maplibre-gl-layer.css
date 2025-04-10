@@ -1,0 +1,7 @@
+.maplibregl-ctrl {
+  button.maplibregl-ctrl-layers {
+    .maplibregl-ctrl-icon {
+      background-image: url(./layers.svg);
+    }
+  }
+}
