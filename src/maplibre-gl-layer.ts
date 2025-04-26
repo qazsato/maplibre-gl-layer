@@ -11,7 +11,8 @@ import { LayerDialog } from './components/LayerDialog'
 
 export type Layer = {
   name: string
-  style: string
+  style: string | StyleSpecification
+  checked?: boolean
 }
 
 export type LayerControlOptions = {
@@ -32,7 +33,8 @@ export class LayerControl implements IControl {
     this.options = options
     this.container = document.createElement('div')
     this.container.classList.add('maplibregl-ctrl', 'maplibregl-ctrl-group')
-    this.currentLayer = options.layers[0]
+    this.currentLayer =
+      options.layers.find((layer) => layer.checked) || options.layers[0]
     this.layerDialog = new LayerDialog(this.options, this.currentLayer)
     this.layerDialog.on('layerchange', (layer: Layer) => {
       this.changeLayer(layer)
@@ -42,11 +44,14 @@ export class LayerControl implements IControl {
 
   onAdd(map: Map) {
     this.map = map
-    this.map.setStyle(this.currentLayer.style)
-    this.map.once('style.load', () => {
-      if (!this.map) return
-      this.currentInitStyle = this.map.getStyle()
-    })
+
+    this.currentInitStyle = this.map.getStyle()
+    if (!this.currentInitStyle) {
+      this.map.once('style.load', () => {
+        if (!this.map) return
+        this.currentInitStyle = this.map.getStyle()
+      })
+    }
 
     const button = this.createButton()
     button.addEventListener('click', () => {
