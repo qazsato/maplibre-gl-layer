@@ -7,7 +7,7 @@ import { LayerControl } from './maplibre-gl-layer'
 const map = new Map({
   container: 'map',
   style:
-    'https://api.protomaps.com/styles/v4/light/en.json?key=afde32549db516d8',
+    'https://api.protomaps.com/styles/v4/white/en.json?key=afde32549db516d8',
   center: [139.7538, 35.6674],
   zoom: 11,
 })
