@@ -2,6 +2,7 @@ import './maplibre-gl-layer.css'
 import type {
   Map,
   LayerSpecification,
+  FilterSpecification,
   SourceSpecification,
   StyleSpecification,
   ControlPosition,
@@ -19,6 +20,10 @@ export type LayerControlOptions = {
   layers: Layer[]
 }
 
+type CustomLayerSpecification = LayerSpecification & {
+  filter?: FilterSpecification
+}
+
 export class LayerControl implements IControl {
   private map: Map | null = null
   private options: LayerControlOptions
@@ -26,7 +31,7 @@ export class LayerControl implements IControl {
   private currentLayer: Layer
   private currentInitStyle: StyleSpecification | null = null
   private addedSources: Record<string, SourceSpecification> = {}
-  private addedLayers: LayerSpecification[] = []
+  private addedLayers: CustomLayerSpecification[] = []
   private layerDialog: LayerDialog
 
   constructor(options: LayerControlOptions) {
@@ -98,7 +103,7 @@ export class LayerControl implements IControl {
     if (!this.map) return
     // layer
     const beforeLayers = this.currentInitStyle!.layers
-    const afterLayers = this.map.getStyle().layers
+    const afterLayers: CustomLayerSpecification[] = this.map.getStyle().layers
     const addedLayers = afterLayers.filter(
       (al) => !beforeLayers.some((bl) => bl.id === al.id),
     )
@@ -109,6 +114,12 @@ export class LayerControl implements IControl {
     this.addedLayers = this.addedLayers.filter(
       (layer) => !removedLayers.some((rl) => rl.id === layer.id),
     )
+
+    // update filter
+    this.addedLayers.forEach((l) => {
+      const currentLayer = afterLayers.find((layer) => layer.id === l.id)
+      l.filter = currentLayer?.filter
+    })
 
     // source
     const beforeSources = this.currentInitStyle!.sources
