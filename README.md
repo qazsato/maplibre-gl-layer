@@ -42,6 +42,9 @@ const layerControl = new LayerControl({
     }
   ]
 })
+layerControl.on('layerchange', (layer) => {
+  console.log('Layer changed to:', layer.name)
+})
 map.addControl(layerControl)
 ```
 

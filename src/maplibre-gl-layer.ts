@@ -33,6 +33,7 @@ export class LayerControl implements IControl {
   private addedSources: Record<string, SourceSpecification> = {}
   private addedLayers: CustomLayerSpecification[] = []
   private layerDialog: LayerDialog
+  private layerChangeCallback: (layer: Layer) => void = () => {}
 
   constructor(options: LayerControlOptions) {
     this.options = options
@@ -69,6 +70,12 @@ export class LayerControl implements IControl {
 
   onRemove() {
     this.container.parentNode?.removeChild(this.container)
+  }
+
+  on(type: string, callback: (layer: Layer) => void) {
+    if (type === 'layerchange') {
+      this.layerChangeCallback = callback
+    }
   }
 
   private getPosition(): ControlPosition | null {
@@ -150,5 +157,8 @@ export class LayerControl implements IControl {
         return style
       },
     })
+
+    this.currentLayer = layer
+    this.layerChangeCallback?.(layer)
   }
 }
