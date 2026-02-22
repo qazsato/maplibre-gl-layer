@@ -6,10 +6,10 @@
   border: none;
   box-shadow: 0 0 0 2px rgba(0, 0, 0, .1);
   border-radius: 5px;
+  background-color: #fff;
 
   .maplibregl-ctrl-layer-dialog-content {
     padding: 6px 14px;
-    background-color: #fff;
   }
 }
 
