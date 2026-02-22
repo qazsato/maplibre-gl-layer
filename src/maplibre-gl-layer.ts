@@ -67,7 +67,7 @@ export class LayerControl implements IControl {
       this.layerDialog.open(button, this.getPosition())
     }
     const scheduleClose = () => {
-      this.closeTimer = setTimeout(() => this.layerDialog.close(), 1000)
+      this.closeTimer = setTimeout(() => this.layerDialog.close(), 500)
     }
 
     button.addEventListener('click', openDialog)
