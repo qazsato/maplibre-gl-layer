@@ -34,6 +34,7 @@ export class LayerControl implements IControl {
   private addedLayers: CustomLayerSpecification[] = []
   private layerDialog: LayerDialog
   private layerChangeCallback: (layer: Layer) => void = () => {}
+  private closeTimer: ReturnType<typeof setTimeout> | null = null
 
   constructor(options: LayerControlOptions) {
     this.options = options
@@ -60,9 +61,24 @@ export class LayerControl implements IControl {
     }
 
     const button = this.createButton()
-    button.addEventListener('click', () => {
+
+    const openDialog = () => {
+      if (this.closeTimer) clearTimeout(this.closeTimer)
       this.layerDialog.open(button, this.getPosition())
+    }
+    const scheduleClose = () => {
+      this.closeTimer = setTimeout(() => this.layerDialog.close(), 1000)
+    }
+
+    button.addEventListener('click', openDialog)
+    button.addEventListener('mouseenter', openDialog)
+    button.addEventListener('mouseleave', scheduleClose)
+
+    this.layerDialog.element.addEventListener('mouseenter', () => {
+      if (this.closeTimer) clearTimeout(this.closeTimer)
     })
+    this.layerDialog.element.addEventListener('mouseleave', scheduleClose)
+
     this.container.appendChild(button)
 
     return this.container

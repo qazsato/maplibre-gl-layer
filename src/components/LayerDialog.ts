@@ -53,8 +53,13 @@ export class LayerDialog {
     })
   }
 
+  get element() {
+    return this.dialog
+  }
+
   open(button: HTMLButtonElement, position: ControlPosition | null = null) {
-    this.dialog.showModal()
+    if (this.dialog.open) return
+    this.dialog.show()
     this.setPosition(button, position)
   }
 
