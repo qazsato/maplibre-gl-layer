@@ -1,6 +1,6 @@
 {
   "name": "maplibre-gl-layer",
-  "version": "0.2.3",
+  "version": "0.3.0",
   "description": "A layer control for MapLibre GL JS",
   "type": "module",
   "files": [
