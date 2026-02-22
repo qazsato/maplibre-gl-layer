@@ -125,7 +125,11 @@ export class LayerControl implements IControl {
     // update filter
     this.addedLayers.forEach((l) => {
       const currentLayer = afterLayers.find((layer) => layer.id === l.id)
-      l.filter = currentLayer?.filter
+      if (currentLayer?.filter !== undefined) {
+        l.filter = currentLayer.filter
+      } else {
+        delete l.filter
+      }
     })
 
     // source
