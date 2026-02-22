@@ -59,8 +59,10 @@ export class LayerDialog {
 
   open(button: HTMLButtonElement, position: ControlPosition | null = null) {
     if (this.dialog.open) return
+    this.dialog.style.setProperty('visibility', 'hidden')
     this.dialog.show()
     this.setPosition(button, position)
+    this.dialog.style.removeProperty('visibility')
   }
 
   close() {
